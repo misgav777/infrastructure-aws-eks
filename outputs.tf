@@ -16,5 +16,5 @@ output "argocd_url" {
 output "argocd_admin_password" {
   description = "Initial admin password for ArgoCD"
   value       = data.kubernetes_secret.argocd_admin_password.data.password
-  sensitive   = true  
+  sensitive   = true
 } 

@@ -20,8 +20,8 @@ resource "aws_subnet" "public_subnet" {
 
 
   tags = {
-    Name                                   = "${var.project}-public-${count.index + 1}"
-    "kubernetes.io/role/elb"               = "1"
+    Name                                    = "${var.project}-public-${count.index + 1}"
+    "kubernetes.io/role/elb"                = "1"
     "kubernetes.io/cluster/${var.eks_name}" = "owned"
   }
 }
@@ -33,8 +33,8 @@ resource "aws_subnet" "private_subnet" {
   availability_zone = element(var.AZs, count.index)
 
   tags = {
-    Name                                   = "${var.project}-private-${count.index + 1}"
-    "kubernetes.io/role/internal-elb"      = "1"
+    Name                                    = "${var.project}-private-${count.index + 1}"
+    "kubernetes.io/role/internal-elb"       = "1"
     "kubernetes.io/cluster/${var.eks_name}" = "owned"
   }
 }
