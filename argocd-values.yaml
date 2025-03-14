@@ -1,0 +1,26 @@
+dex:
+  enabled: false
+
+server:
+  service:
+    type: ClusterIP
+  
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    pathType: Prefix
+    paths:
+      - /argocd
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
+      nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
+  
+  extraArgs:
+    - --insecure
+    - --basehref=/argocd
+    - --rootpath=/argocd
+
+configs:
+  params:
+    server.insecure: "true"

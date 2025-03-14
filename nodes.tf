@@ -52,7 +52,7 @@ resource "aws_eks_node_group" "SPOT" {
   }
 
   capacity_type  = "SPOT"
-  instance_types = ["t3a.medium", "t3a.large", "t3a.small"]
+  instance_types = [var.instance_type]
 
   update_config {
     max_unavailable_percentage = 25

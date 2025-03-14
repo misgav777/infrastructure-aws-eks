@@ -1,19 +1,17 @@
-# data "aws_availability_zones" "available" {
-#   state = "available"
-# }
-
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+# Get the NGINX Ingress Controller's external hostname
+data "kubernetes_service" "nginx_ingress_controller" {
+  metadata {
+    name      = "nginx-ingress-ingress-nginx-controller"
+    namespace = "ingress-nginx"
   }
+  depends_on = [helm_release.nginx_ingress]
+}
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
+# Get the ArgoCD admin password secret
+data "kubernetes_secret" "argocd_admin_password" {
+  metadata {
+    name      = "argocd-initial-admin-secret"
+    namespace = "argocd"
   }
-
-  owners = ["099720109477"]
+  depends_on = [helm_release.argocd]
 }
