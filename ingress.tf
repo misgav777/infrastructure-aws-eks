@@ -11,7 +11,7 @@ resource "helm_release" "nginx_ingress" {
   # Enable waiting for load balancer to be ready
   wait          = true
   wait_for_jobs = true
-  values = [file("${path.module}/ingress-values.yaml")]
+  values        = [file("${path.module}/ingress-values.yaml")]
 
   depends_on = [
     aws_eks_node_group.SPOT
