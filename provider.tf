@@ -40,4 +40,5 @@ provider "kubernetes" {
     args        = ["eks", "get-token", "--cluster-name", aws_eks_cluster.cluster.name]
     command     = "aws"
   }
+  # alias = "eks"
 }

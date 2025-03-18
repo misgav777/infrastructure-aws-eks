@@ -7,7 +7,7 @@ resource "helm_release" "argocd" {
   version          = "5.46.7"
   timeout          = 600
 
-  values = [file("${path.module}/argocd-values.yaml")]
+  values = [file("${path.module}/manifests/argocd-values.yaml")]
 
   depends_on = [
     aws_eks_node_group.SPOT,

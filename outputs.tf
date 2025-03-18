@@ -10,7 +10,7 @@ output "kubeconfig_command" {
 
 output "argocd_url" {
   description = "URL to access ArgoCD"
-  value       = "https://${data.kubernetes_service.nginx_ingress_controller.status.0.load_balancer.0.ingress.0.hostname}/argocd"
+  value       = "http://${data.kubernetes_service.nginx_ingress_controller.status.0.load_balancer.0.ingress.0.hostname}/argocd"
 }
 
 output "argocd_admin_password" {
